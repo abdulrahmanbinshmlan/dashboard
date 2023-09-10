@@ -1,17 +1,14 @@
 <template>
- <headerDashboard />
- <sideNav />
+  <layout />
 </template>
 
 <script>
-import headerDashboard from './components/shared-components/headerDashboard/headerDashboard.vue'
-import SideNav from './components/shared-components/sideNav/sideNav.vue'
+import Layout from './components/shared-components/layout/mainLayout.vue'
 
 export default {
   name: 'App',
   components: {
-    headerDashboard,
-    SideNav
+    Layout
   }
 }
 </script>
