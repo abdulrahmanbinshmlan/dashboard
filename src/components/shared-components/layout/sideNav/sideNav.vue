@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full w-96 fixed start-0 border">
+  <div class="h-full w-2/12 fixed start-0 border">
     
   </div>
 </template>
