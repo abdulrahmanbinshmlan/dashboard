@@ -1,5 +1,7 @@
 <template>
-  <Bar :data="chartData" />
+  <div class="border bg-white">
+  <Bar v-if="load" :data="chartData" :option="options" :style="myStyles" />
+</div>
 </template>
 
 <script>
@@ -23,44 +25,42 @@ ChartJS.register(
   LinearScale
 );
 
+import barChartProvider from "../../../providers/barChartProvider"
+
 export default {
-  name: "BarChart",
   components: { Bar },
   data() {
     return {
-      chartData: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ],
-        datasets: [
-          {
-            label: "Data One",
-            backgroundColor: "#4f46e5",
-            data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11],
-          },
-          {
-            label: "Data Two",
-            backgroundColor: "#e0e7ff",
-            data: [60, 40, 22, 59, 50, 20, 49, 50, 70, 50, 22, 31],
-          },
-        ],
-      },
+      chartData: [],
       options: {
         responsive: true,
         maintainAspectRatio: false
-      }
+      },
+      load: false
     };
   },
+  computed: {
+    myStyles () {
+      return {
+        position: 'relative',
+        height: `${300}px`,
+        width: `${100}%`
+      }
+    }
+  },
+  async beforeMount() {
+    await this.getBarChartData();
+  },
+  methods: {
+   async getBarChartData() {
+    await barChartProvider.methods.fetchBarChartData();
+    if(barChartProvider.methods.getBarChartState() === "OK") {
+      this.chartData = barChartProvider.methods.getBarChartData();
+      this.load = true;
+    } else {
+      this.chartData = barChartProvider.methods.getBarChartError();
+    }
+    }
+  }
 };
 </script>

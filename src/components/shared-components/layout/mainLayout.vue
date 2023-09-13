@@ -33,7 +33,7 @@
                       alt="" />
                     <span class="hidden lg:flex lg:items-center">
                       <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Tom Cook</span>
-                      <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                      <EllipsisHorizontalIcon class="ml-6 h-5 w-5 text-gray-400" aria-hidden="true" />
                     </span>
                   </MenuButton>
                   <transition enter-active-class="transition ease-out duration-100"
@@ -66,26 +66,18 @@
                       </ul>
                     </li>
                     <li>
-                      <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
+                      <div class="text-xs font-semibold leading-6 text-gray-400 border-b" />
                       <ul role="list" class="-mx-2 mt-2 space-y-1">
                         <li v-for="team in teams" :key="team.name">
                           <a :href="team.href"
                             :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
-                            <span
-                              :class="[team.current ? 'text-indigo-600 border-indigo-600' : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white']">{{
-                                team.initial }}</span>
-                            <span class="truncate">{{ team.name }}</span>
+                            <component :is="team.icon"
+                              :class="[team.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600', 'h-6 w-6 shrink-0']"
+                              aria-hidden="true" />
+                            {{ team.name }}
                           </a>
                         </li>
                       </ul>
-                    </li>
-                    <li class="mt-auto">
-                      <a href="#"
-                        class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
-                        <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"
-                          aria-hidden="true" />
-                        Settings
-                      </a>
                     </li>
                   </ul>
                 </nav>
@@ -110,7 +102,7 @@
               alt="" />
             <span class="hidden lg:flex lg:items-center">
               <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">Tom Cook</span>
-              <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+              <EllipsisHorizontalIcon class="ml-8 h-5 w-5 text-gray-400 bg-gray-100 rounded" aria-hidden="true" />
             </span>
           </MenuButton>
           <transition enter-active-class="transition ease-out duration-100"
@@ -143,25 +135,18 @@
               </ul>
             </li>
             <li>
-              <div class="text-xs font-semibold leading-6 text-gray-400">Your teams</div>
+              <div class="text-xs font-semibold leading-6 text-gray-400 border-b" />
               <ul role="list" class="-mx-2 mt-2 space-y-1">
                 <li v-for="team in teams" :key="team.name">
                   <a :href="team.href"
                     :class="[team.current ? 'bg-gray-50 text-indigo-600' : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50', 'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold']">
-                    <span
-                      :class="[team.current ? 'text-indigo-600 border-indigo-600' : 'text-gray-400 border-gray-200 group-hover:border-indigo-600 group-hover:text-indigo-600', 'flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border text-[0.625rem] font-medium bg-white']">{{
-                        team.initial }}</span>
-                    <span class="truncate">{{ team.name }}</span>
+                    <component :is="team.icon"
+                      :class="[team.current ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600', 'h-6 w-6 shrink-0']"
+                      aria-hidden="true" />
+                    {{ team.name }}
                   </a>
                 </li>
               </ul>
-            </li>
-            <li class="mt-auto">
-              <a href="#"
-                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600">
-                <Cog6ToothIcon class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" aria-hidden="true" />
-                Settings
-              </a>
             </li>
           </ul>
         </nav>
@@ -230,7 +215,7 @@ import {
 import {
   Bars3Icon,
   BellIcon,
-  CalendarIcon,
+  CalendarDaysIcon,
   ChartPieIcon,
   Cog6ToothIcon,
   DocumentDuplicateIcon,
@@ -238,37 +223,45 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
+  ChartBarSquareIcon,
+  UserIcon,
+  IdentificationIcon,
+  BriefcaseIcon,
+  UserCircleIcon,
+  RectangleGroupIcon
 } from '@heroicons/vue/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import { EllipsisHorizontalIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
 export default {
   components: {
     Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems, TransitionChild, TransitionRoot,
     Bars3Icon,
     BellIcon,
-    CalendarIcon,
+    CalendarDaysIcon,
     ChartPieIcon,
     Cog6ToothIcon,
     DocumentDuplicateIcon,
     FolderIcon,
     HomeIcon,
     UsersIcon,
-    XMarkIcon, ChevronDownIcon, MagnifyingGlassIcon
+    XMarkIcon, EllipsisHorizontalIcon, MagnifyingGlassIcon, ChartBarSquareIcon, UserIcon, IdentificationIcon,
+    BriefcaseIcon,
+    UserCircleIcon,
+    RectangleGroupIcon
   },
   data() {
     return {
       navigation: [
-        { name: 'Dashboard', href: '/#/dashboard', icon: HomeIcon, current: true },
-        { name: 'Team', href: '#', icon: UsersIcon, current: false },
-        { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-        { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-        { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-        { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+        { name: 'Dashboard', href: '/#/dashboard', icon: RectangleGroupIcon, current: true },
+        { name: 'Finance', href: '#', icon: ChartBarSquareIcon, current: false },
+        { name: 'Employees', href: '#', icon: IdentificationIcon, current: false },
+        { name: 'Company', href: '#', icon: BriefcaseIcon, current: false },
+        { name: 'Candidate', href: '#', icon: UserCircleIcon, current: false },
+        { name: 'Calendar', href: '#', icon: CalendarDaysIcon, current: false },
       ],
       teams: [
-        { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-        { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-        { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+        { id: 1, name: 'Profile', href: '#', icon: UserIcon, current: false },
+        { id: 2, name: 'Settings', href: '#', icon: Cog6ToothIcon, current: false },
       ],
       userNavigation: [
         { name: 'Your profile', href: '#' },
